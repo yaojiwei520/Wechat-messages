@@ -1,22 +1,23 @@
-name: morning
+name: Weather Forecast
+
 on:
   schedule:
-  # UTC 时间的零点，北京时间的八点。但是由于 Github 同一时间任务太多，因此会有延迟
-  - cron:  '0 0 * * *'
+    # UTC 时间每天 8 点运行，对应北京时间 16 点
+    - cron: '0 8 * * *'
   workflow_dispatch:
 
 jobs:
   send_message:
     runs-on: ubuntu-latest
-    name: send morning to your girlfriend
+    name: Send weather forecast
 
     steps:
-    - name: checkout
+    - name: Checkout
       uses: actions/checkout@v3
       with:
         ref: master
 
-    - name: sender
+    - name: Set up Python 3.x
       uses: actions/setup-python@v2
       with:
         python-version: '3.x'
@@ -29,7 +30,3 @@ jobs:
       USER_ID: ${{ secrets.USER_ID }}
       TEMPLATE_ID: ${{ secrets.TEMPLATE_ID }}
       CITY: ${{ secrets.CITY }}
-      START_DATE: ${{ secrets.START_DATE }}
-      SOLARY: ${{ secrets.SOLARY }}
-      BIRTHDAY: ${{ secrets.BIRTHDAY }}
-
