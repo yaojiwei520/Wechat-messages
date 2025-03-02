@@ -1,4 +1,4 @@
-name: Weather Forecast
+name: Weather 
 
 on:
   schedule:
